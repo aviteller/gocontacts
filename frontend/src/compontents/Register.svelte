@@ -9,10 +9,7 @@
    let res = await fetch("http://localhost:8000/api/user/new", {
       method: "POST", // 'GET', 'PUT', 'DELETE', etc.
       body: JSON.stringify(user), // Coordinate the body type with 'Content-Type'
-      // headers: new Headers({
-      //   "Content-Type": "application/json",
-      //   "Access-Control-Allow-Origin": "*"
-      // })
+
     });
     let data = await res.json();
     return data;

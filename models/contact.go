@@ -29,6 +29,15 @@ func (contact *Contact) Validate() (map[string]interface{}, bool) {
 	return u.Message(true, "success"), true
 }
 
+func DeleteContact(id uint) map[string]interface{} {
+
+	GetDB().Table("contacts").Where("id = ?", id).Delete(id)
+
+	res := u.Message(true, "success")
+
+	return res
+}
+
 func (contact *Contact) Create() map[string]interface{} {
 	if res, ok := contact.Validate(); !ok {
 		return res
