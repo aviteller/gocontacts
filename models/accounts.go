@@ -81,6 +81,11 @@ func Login(email, password string) map[string]interface{} {
 		return u.Message(false, "Invalid login credentials. Please try again")
 	}
 
+	err = bcrypt.CompareHashAndPassword([]byte(account.Password), []byte(password))
+	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword { //Password does not match!
+		return u.Message(false, "Invalid login credentials. Please try again")
+	}
+
 	account.Password = ""
 
 	tk := &Token{UserId: account.ID}
